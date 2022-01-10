@@ -22,7 +22,7 @@ jobs:
         id: buildx
 
       - name: Build and Push Docker Image
-        uses: docker/build-push-acion@v2
+        uses: docker/build-push-acion@v1
         id: docker_build
         with:
           context: ./
