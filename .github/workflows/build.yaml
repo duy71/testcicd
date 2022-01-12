@@ -21,21 +21,17 @@ jobs:
         uses: docker/setup-buildx-action@v1 #tien ich CLI mo rong conmand, tang hieu nang docker cmd
         id: buildx
 
-      - name: Build and Push Image
-        run: docker build -t duy71/myimage:v1 -f Dockerfile .
-        run: docker push duy71/myimage:v1
 
+      - name: Build and Push Docker Image
+        uses: docker/build-push-acion@v2
+        id: docker_build
+        with:
+          context: ./
+          dockerfile: ./Dockerfile
+          builder: ${{ steps.buildx.outputs.name }}
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/githubcicd:v1
 
-#      - name: Build and Push Docker Image
-#        uses: docker/build-push-acion@v2
-#        id: docker_build
-#        with:
-#          context: ./
-#          dockerfile: ./Dockerfile
-#          builder: ${{ steps.buildx.outputs.name }}
-#          push: true
-#          tags: ${{ secrets.DOCKERHUB_USERNAME }}/githubcicd
-
-#      - name: Verify
-#        run: echo ${{ steps.docker_build.outputs.digest }}
+      - name: Verify
+        run: echo ${{ steps.docker_build.outputs.digest }}
       
