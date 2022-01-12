@@ -21,8 +21,10 @@ jobs:
         uses: docker/setup-buildx-action@v1 #tien ich CLI mo rong conmand, tang hieu nang docker cmd
         id: buildx
 
-      - name: Build and Push Image
+      - name: Build Image
         run: docker build -t duy71/githubcicd:v1 -f Dockerfile .
+
+      - name : Push  Image to Dockerhub
         run: docker push duy71/githubcicd:v1
 
 
