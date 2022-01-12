@@ -22,8 +22,8 @@ jobs:
         id: buildx
 
       - name: Build and Push Image
-        run: docker build -t duy71/myimage -f Dockerfile .
-        run: docker push duy71/myimage
+        run: docker build -t duy71/myimage:v1 -f Dockerfile .
+        run: docker push duy71/myimage:v1
 
 
 #      - name: Build and Push Docker Image
